@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run sh3pik/days-in-schengen yarn test-ci
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: 'days-in-schengen'
+  env: 'DaysInSchengen-env'
+  bucket_name: 'elasticbeanstalk-us-east-2-960720748684'
+  bucket_path: 'days-in-schengen'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: '$AWS_SECRET_KEY'
