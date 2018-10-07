@@ -7,8 +7,8 @@ import subDays from 'date-fns/sub_days'
 /**
  * Calculate the number of days within 180 days period till today.
  * @param {object} range - The period to calculate days for.
- * @param {string} range.start - The start date of the period in Schegen zone.
- * @param {object} range.end - The start date of the period in Schegen zone.
+ * @param {Date} range.start - The start date of the period in Schegen zone.
+ * @param {Date} range.end - The start date of the period in Schegen zone.
  * @return {number} - The number of days within the past 180 days.
  */
 export function calculateDaysBackFor(range) {
