@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import parse from 'date-fns/parse'
-import format from 'date-fns/format'
-import { usedDays } from './calculateDays'
+import { usedDays } from '../calculateDays'
 
 export default class DatesForm extends Component {
   constructor(props) {
@@ -31,20 +30,21 @@ export default class DatesForm extends Component {
     let result = ''
     const spendDays = this.state.spendDays
     if (spendDays !== 0) {
-      const text = spendDays == 1 ? ' day spend' : ' days spend'
+      const text = spendDays === 1 ? ' day spend' : ' days spend'
       result = spendDays + text
     }
     return (
       <form onSubmit={this.showDays.bind(this)}>
         <p>Write days in mm-dd-yyyy format</p>
-        <label>Day In:</label>
         {this.state.dates
           .concat({ start: null, end: null })
           .map(({ start, end }, index) => (
             <div key={index.toString()}>
+              <label>Day In:</label>
               <input
                 onChange={e => this.updateDate(index, 'start', e.target.value)}
               />
+              <label>Day Out:</label>
               <input
                 onChange={e => this.updateDate(index, 'end', e.target.value)}
               />
@@ -52,7 +52,7 @@ export default class DatesForm extends Component {
           ))}
 
         <button>Press me</button>
-        <span>{result}</span>
+        <div>{result}</div>
       </form>
     )
   }

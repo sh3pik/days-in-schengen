@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
-import DatesForm from './datesForm'
+import DatesForm from './components/datesForm'
 
 class App extends Component {
   render() {
