@@ -1,59 +1,87 @@
 import React, { Component } from 'react'
-import parse from 'date-fns/parse'
+import format from 'date-fns/format'
 import { usedDays } from '../calculateDays'
+import SimpleReactCalendar from 'simple-react-calendar'
+import '../calendar.css'
+
+function completeRange(range) {
+  return range.start && range.end
+}
+
+function SelectedRange({ range }) {
+  return (
+    <div>
+      Selected range:{' '}
+      {completeRange(range) ? (
+        <div>
+          {format(range.start, 'DD-MM-YYYY')}-{format(range.end, 'DD-MM-YYYY')}
+        </div>
+      ) : (
+        <div>-</div>
+      )}
+    </div>
+  )
+}
 
 export default class DatesForm extends Component {
   constructor(props) {
     super(props)
-    this.state = { dates: [], spendDays: 0 }
+    this.state = { dates: [{ start: null, end: null }] }
+    // This binding is necessary to make `this` work in the callback
+    this.addNewItem = this.addNewItem.bind(this)
+    this.removeItem = this.removeItem.bind(this)
   }
 
-  updateDate(index, key, newValue) {
+  updateDates(index, range) {
     const newDates = Object.assign([], this.state.dates)
-    newDates[index] = newDates[index] || {}
-    newDates[index][key] = newValue
+    newDates[index] = range
     this.setState({ dates: newDates })
   }
 
-  showDays(e) {
-    e.preventDefault()
-    const spendDays = usedDays(
-      this.state.dates.map(({ start, end }) => ({
-        start: parse(start),
-        end: parse(end)
-      }))
-    )
-    this.setState({ spendDays })
+  addNewItem(e) {
+    const dates = Object.assign([], this.state.dates)
+    dates.push({ start: null, end: null })
+    this.setState({ dates: dates })
+  }
+
+  removeItem(index) {
+    const dates = Object.assign([], this.state.dates)
+    dates.splice(index, 1)
+    this.setState({ dates: dates })
   }
 
   render() {
-    let result = ''
-    const spendDays = this.state.spendDays
-    if (spendDays !== 0) {
-      const text = spendDays === 1 ? ' day spend' : ' days spend'
-      result = spendDays + text
-    }
+    const spendDays = usedDays(this.state.dates)
     return (
-      <form onSubmit={this.showDays.bind(this)}>
-        <p>Write days in mm-dd-yyyy format</p>
-        {this.state.dates
-          .concat({ start: null, end: null })
-          .map(({ start, end }, index) => (
-            <div key={index.toString()}>
-              <label>Day In:</label>
-              <input
-                onChange={e => this.updateDate(index, 'start', e.target.value)}
-              />
-              <label>Day Out:</label>
-              <input
-                onChange={e => this.updateDate(index, 'end', e.target.value)}
-              />
-            </div>
-          ))}
+      <div>
+        {this.state.dates.map((range, index) => (
+          <div key={index.toString()}>
+            <SelectedRange range={range} />
+            <SimpleReactCalendar
+              selected={completeRange(range) && range}
+              activeMonth={new Date()}
+              mode="range"
+              onSelect={range => this.updateDates(index, range)}
+            />
+            <button
+              className="button-delete"
+              onClick={() => this.removeItem(index)}
+              disabled={this.state.dates.length == 1}
+            >
+              Delete
+            </button>
+          </div>
+        ))}
+        <button className="button-add" onClick={this.addNewItem}>
+          Add more
+        </button>
 
-        <button>Press me</button>
-        <div>{result}</div>
-      </form>
+        {!!spendDays && (
+          <div className="result">
+            {spendDays} {spendDays === 1 ? 'day spend' : 'days spend'}
+          </div>
+        )}
+      </div>
     )
   }
 }

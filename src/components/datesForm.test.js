@@ -1,43 +1,56 @@
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import React from 'react'
 import DatesForm from './datesForm'
 
 describe('DateForms', () => {
-  const wrapper = shallow(<DatesForm />)
+  describe('empty form', () => {
+    const myDate = new Date(2018, 7, 30)
+    const RealDate = Date
 
-  it('renders empty form', () => {
-    expect(wrapper).toMatchSnapshot()
-  })
+    beforeAll(() => {
+      global.Date = jest.fn(
+        (...props) =>
+          props.length ? new RealDate(...props) : new RealDate(myDate)
+      )
+      Object.assign(Date, RealDate)
+    })
 
-  it('updates state with data from the fields', () => {
-    const inputElement = wrapper.find('input')
-    inputElement.first().simulate('change', { target: { value: '06-06-2018' } })
-    inputElement.last().simulate('change', { target: { value: '06-07-2018' } })
-    expect(wrapper.state()).toEqual({
-      dates: [{ start: '06-06-2018', end: '06-07-2018' }],
-      spendDays: 0
+    afterAll(() => {
+      global.Date = RealDate
+    })
+    it('renders correctly', () => {
+      const wrapper = shallow(<DatesForm />)
+      expect(wrapper).toMatchSnapshot()
     })
   })
 
-  it('submits the form', () => {
-    const inputElement = wrapper.find('input')
-    wrapper.setState({
-      dates: [{ start: '08-06-2018', end: '08-07-2018' }],
-      spendDays: 0
-    })
-    wrapper.find('form').simulate('submit', { preventDefault() {} })
-    expect(wrapper.state()).toEqual({
-      dates: [{ start: '08-06-2018', end: '08-07-2018' }],
-      spendDays: 2
-    })
-  })
+  describe('form behavor', () => {
+    const wrapper = mount(<DatesForm />)
 
-  it('shows the result', () => {
-    const buttonElement = wrapper.find('button')
-    wrapper.setState({
-      spendDays: 2
+    it('adds a new calendar after click on Add More', () => {
+      wrapper
+        .find('button.button-add')
+        .first()
+        .simulate('click')
+      expect(wrapper.find('div.calendar').length).toEqual(2)
     })
-    buttonElement.simulate('click')
-    expect(wrapper.text()).toMatch('2 days spend')
+
+    it('deletes a calendar after click on Delete', () => {
+      wrapper.setState({
+        dates: [{ start: null, end: null }, { start: null, end: null }]
+      })
+      wrapper
+        .find('button.button-delete')
+        .first()
+        .simulate('click')
+      expect(wrapper.find('div.calendar').length).toEqual(1)
+    })
+
+    it('shows the result', () => {
+      wrapper.setState({
+        dates: [{ start: new Date(2018, 7, 20), end: new Date(2018, 7, 21) }]
+      })
+      expect(wrapper.find('.result').text()).toEqual('2 days spend')
+    })
   })
 })

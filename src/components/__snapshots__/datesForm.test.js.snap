@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DateForms renders empty form 1`] = `
+exports[`DateForms empty form renders correctly 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <DatesForm />,
@@ -18,63 +18,73 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <p>
-          Write days in mm-dd-yyyy format
-</p>,
         Array [
           <div>
-            <label>
-                        Day In:
-            </label>
-            <input
-                        onChange={[Function]}
+            <SelectedRange
+                        range={
+                                    Object {
+                                                "end": null,
+                                                "start": null,
+                                              }
+                        }
             />
-            <label>
-                        Day Out:
-            </label>
-            <input
-                        onChange={[Function]}
+            <Calendar
+                        activeMonth={2018-08-29T22:00:00.000Z}
+                        blockClassName="calendar"
+                        mode="range"
+                        onSelect={[Function]}
+                        selected={null}
+                        weekStartsOn={1}
             />
+            <button
+                        className="button-delete"
+                        disabled={true}
+                        onClick={[Function]}
+            >
+                        Delete
+            </button>
 </div>,
         ],
-        <button>
-          Press me
+        <button
+          className="button-add"
+          onClick={[Function]}
+>
+          Add more
 </button>,
-        <div />,
+        false,
       ],
-      "onSubmit": [Function],
     },
     "ref": null,
     "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": "Write days in mm-dd-yyyy format",
-        },
-        "ref": null,
-        "rendered": "Write days in mm-dd-yyyy format",
-        "type": "p",
-      },
       Object {
         "instance": null,
         "key": "0",
         "nodeType": "host",
         "props": Object {
           "children": Array [
-            <label>
-              Day In:
-</label>,
-            <input
-              onChange={[Function]}
+            <SelectedRange
+              range={
+                            Object {
+                                          "end": null,
+                                          "start": null,
+                                        }
+              }
 />,
-            <label>
-              Day Out:
-</label>,
-            <input
-              onChange={[Function]}
+            <Calendar
+              activeMonth={2018-08-29T22:00:00.000Z}
+              blockClassName="calendar"
+              mode="range"
+              onSelect={[Function]}
+              selected={null}
+              weekStartsOn={1}
 />,
+            <button
+              className="button-delete"
+              disabled={true}
+              onClick={[Function]}
+>
+              Delete
+</button>,
           ],
         },
         "ref": null,
@@ -82,46 +92,46 @@ ShallowWrapper {
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
+            "nodeType": "function",
             "props": Object {
-              "children": "Day In:",
-            },
-            "ref": null,
-            "rendered": "Day In:",
-            "type": "label",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "onChange": [Function],
+              "range": Object {
+                "end": null,
+                "start": null,
+              },
             },
             "ref": null,
             "rendered": null,
-            "type": "input",
+            "type": [Function],
           },
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
+            "nodeType": "class",
             "props": Object {
-              "children": "Day Out:",
-            },
-            "ref": null,
-            "rendered": "Day Out:",
-            "type": "label",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "onChange": [Function],
+              "activeMonth": 2018-08-29T22:00:00.000Z,
+              "blockClassName": "calendar",
+              "mode": "range",
+              "onSelect": [Function],
+              "selected": null,
+              "weekStartsOn": 1,
             },
             "ref": null,
             "rendered": null,
-            "type": "input",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Delete",
+              "className": "button-delete",
+              "disabled": true,
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": "Delete",
+            "type": "button",
           },
         ],
         "type": "div",
@@ -131,25 +141,17 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": "Press me",
+          "children": "Add more",
+          "className": "button-add",
+          "onClick": [Function],
         },
         "ref": null,
-        "rendered": "Press me",
+        "rendered": "Add more",
         "type": "button",
       },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": "",
-        },
-        "ref": null,
-        "rendered": "",
-        "type": "div",
-      },
+      false,
     ],
-    "type": "form",
+    "type": "div",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
@@ -158,63 +160,73 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <p>
-            Write days in mm-dd-yyyy format
-</p>,
           Array [
             <div>
-              <label>
-                            Day In:
-              </label>
-              <input
-                            onChange={[Function]}
+              <SelectedRange
+                            range={
+                                          Object {
+                                                        "end": null,
+                                                        "start": null,
+                                                      }
+                            }
               />
-              <label>
-                            Day Out:
-              </label>
-              <input
-                            onChange={[Function]}
+              <Calendar
+                            activeMonth={2018-08-29T22:00:00.000Z}
+                            blockClassName="calendar"
+                            mode="range"
+                            onSelect={[Function]}
+                            selected={null}
+                            weekStartsOn={1}
               />
+              <button
+                            className="button-delete"
+                            disabled={true}
+                            onClick={[Function]}
+              >
+                            Delete
+              </button>
 </div>,
           ],
-          <button>
-            Press me
+          <button
+            className="button-add"
+            onClick={[Function]}
+>
+            Add more
 </button>,
-          <div />,
+          false,
         ],
-        "onSubmit": [Function],
       },
       "ref": null,
       "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "Write days in mm-dd-yyyy format",
-          },
-          "ref": null,
-          "rendered": "Write days in mm-dd-yyyy format",
-          "type": "p",
-        },
         Object {
           "instance": null,
           "key": "0",
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              <label>
-                Day In:
-</label>,
-              <input
-                onChange={[Function]}
+              <SelectedRange
+                range={
+                                Object {
+                                                "end": null,
+                                                "start": null,
+                                              }
+                }
 />,
-              <label>
-                Day Out:
-</label>,
-              <input
-                onChange={[Function]}
+              <Calendar
+                activeMonth={2018-08-29T22:00:00.000Z}
+                blockClassName="calendar"
+                mode="range"
+                onSelect={[Function]}
+                selected={null}
+                weekStartsOn={1}
 />,
+              <button
+                className="button-delete"
+                disabled={true}
+                onClick={[Function]}
+>
+                Delete
+</button>,
             ],
           },
           "ref": null,
@@ -222,46 +234,46 @@ ShallowWrapper {
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "host",
+              "nodeType": "function",
               "props": Object {
-                "children": "Day In:",
-              },
-              "ref": null,
-              "rendered": "Day In:",
-              "type": "label",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "onChange": [Function],
+                "range": Object {
+                  "end": null,
+                  "start": null,
+                },
               },
               "ref": null,
               "rendered": null,
-              "type": "input",
+              "type": [Function],
             },
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "host",
+              "nodeType": "class",
               "props": Object {
-                "children": "Day Out:",
-              },
-              "ref": null,
-              "rendered": "Day Out:",
-              "type": "label",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "onChange": [Function],
+                "activeMonth": 2018-08-29T22:00:00.000Z,
+                "blockClassName": "calendar",
+                "mode": "range",
+                "onSelect": [Function],
+                "selected": null,
+                "weekStartsOn": 1,
               },
               "ref": null,
               "rendered": null,
-              "type": "input",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Delete",
+                "className": "button-delete",
+                "disabled": true,
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "Delete",
+              "type": "button",
             },
           ],
           "type": "div",
@@ -271,25 +283,17 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": "Press me",
+            "children": "Add more",
+            "className": "button-add",
+            "onClick": [Function],
           },
           "ref": null,
-          "rendered": "Press me",
+          "rendered": "Add more",
           "type": "button",
         },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "",
-          },
-          "ref": null,
-          "rendered": "",
-          "type": "div",
-        },
+        false,
       ],
-      "type": "form",
+      "type": "div",
     },
   ],
   Symbol(enzyme.__options__): Object {
